@@ -3,181 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Marry Me? 💍</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-        }
-
-        .container {
-            position: relative;
-            text-align: center;
-            width: 80%;
-            max-width: 600px;
-            min-height: 300px;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(5px);
-        }
-
-        h1 {
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            font-size: 2.5em;
-            margin-bottom: 30px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            position: relative;
-            min-height: 80px;
-        }
-
-        .yes-button, .no-button {
-            padding: 15px 40px;
-            font-size: 1.5em;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            position: absolute;
-        }
-
-        .yes-button {
-            background: #4CAF50;
-            color: white;
-            left: 50%;
-            transform: translateX(-120%);
-            z-index: 1;
-        }
-
-        .yes-button:hover {
-            background: #45a049;
-            transform: translateX(-120%) scale(1.1);
-        }
-
-        .no-button {
-            background: #f44336;
-            color: white;
-            transition: all 0.5s ease;
-            left: 50%;
-            transform: translateX(20%);
-        }
-
-        .no-button:hover {
-            transform: translate(
-                calc(var(--random-x) * 100%),
-                calc(var(--random-y) * 100%)
-            );
-        }
-
-        .heart {
-            position: absolute;
-            pointer-events: none;
-            animation: float 4s ease-in-out infinite;
-            opacity: 0;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(20deg);
-                opacity: 0;
-            }
-        }
-    </style>
+    <title>Hehe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Will You Marry Me? 💖</h1>
-        <div class="buttons">
-            <a href="#" class="yes-button">YES!</a>
-            <a href="#" class="no-button">NO</a>
+        <div class="proposal-box">
+            <h1>Babyyy,</h1>
+            <p class="question">Will you marry me? 🥺</p>
+            <div class="buttons">
+                <button id="yesBtn" class="btn yes-btn">Yes</button>
+                <button id="noBtn" class="btn no-btn">No</button>
+            </div>
         </div>
+        <div class="confetti-container"></div>
     </div>
-
-    <script>
-        const noButton = document.querySelector('.no-button');
-        const container = document.querySelector('.container');
-        const buttonsContainer = document.querySelector('.buttons');
-
-        // Improved escaping behavior
-        noButton.addEventListener('mouseover', () => {
-            const containerRect = buttonsContainer.getBoundingClientRect();
-            const buttonRect = noButton.getBoundingClientRect();
-            
-            // Calculate safe movement area
-            const maxX = containerRect.width - buttonRect.width;
-            const maxY = containerRect.height - buttonRect.height;
-            
-            // Generate random position within bounds
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
-            
-            // Apply movement with CSS variables
-            noButton.style.setProperty('--random-x', Math.random() > 0.5 ? 
-                `calc(${randomX}px - 50%)` : `calc(-${randomX}px + 50%)`);
-            noButton.style.setProperty('--random-y', Math.random() > 0.5 ? 
-                `calc(${randomY}px - 50%)` : `calc(-${randomY}px + 50%)`);
-            
-            // Create floating hearts
-            createHearts();
-        });
-
-        // When clicked, change to "YES" with celebration
-        noButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            noButton.textContent = "YES!";
-            noButton.style.background = "#4CAF50";
-            noButton.style.transform = "translateX(20%) scale(1.2)";
-            noButton.style.transition = "all 0.5s ease";
-            
-            // Big celebration
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => createHearts(), i * 100);
-            }
-        });
-
-        // Create floating hearts animation
-        function createHearts() {
-            const heart = document.createElement('div');
-            heart.innerHTML = '❤️';
-            heart.classList.add('heart');
-            
-            // Random position at bottom
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.bottom = '0';
-            
-            // Random size
-            const size = Math.random() * 20 + 10;
-            heart.style.fontSize = size + 'px';
-            
-            // Random animation duration
-            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-            
-            document.body.appendChild(heart);
-            
-            // Remove heart after animation
-            setTimeout(() => {
-                heart.remove();
-            }, 4000);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
